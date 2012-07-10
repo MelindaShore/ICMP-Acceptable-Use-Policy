@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<?rfc toc="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc comments="yes"?>
+<?rfc inline="no"?>
+<!DOCTYPE rfc
+  SYSTEM "rfc2629.dtd" [
+          <!ENTITY rfc2119 PUBLIC '' 
+      'http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml'>
+]>
+
+<rfc ipr='trust200902'
+     docName='draft-shore-icmp-aup-00'>
+
+<front>
+  <title abbrev='ICMP AUP'>
+    An Acceptable Use Policy for New ICMP Types and Codes
+  </title>
+
+  <author initials='M.' surname='Shore' fullname='Melinda Shore'>
+    <organization>No Mountain Software</organization>
+    <address>
+      <postal>
+        <street>PO Box 16271</street>
+        <city>Two Rivers</city>
+        <region>AK</region>
+        <code>99716</code>
+        <country>US</country>
+      </postal>
+      <phone>+1 907 322 9522</phone>
+      <email>melinda.shore@nomountain.net</email>
+    </address>
+  </author>
+
+  <author initials='C.' surname='Pignataro' fullname='Carlos Pignataro'>
+    <organization>Cisco Systems, Inc.</organization>
+    <address>
+      <postal>
+        <street>7200-12 Kit Creek Road</street>
+        <city>Research Triangle Park</city>
+        <region>NC</region>
+        <code>27709</code>
+        <country>US</country>
+      </postal>
+      <email>cpignata@cisc.com</email>
+    </address>
+  </author>
+
+  <date month='July' year='2012' />
+
+  <area>Operations</area>
+
+  <abstract>
+    <t>Some recent proposals to add new Internet Control Message
+      Protocol (ICMP) types and/or codes
+      have highlighted a need to describe policies for when adding
+      new features to ICMP is desirable and when it is not.  In
+      this document we provide a basic description of ICMP's
+      role in the IP stack and some guidelines for the future.</t>
+  </abstract>
+</front>
+
+<middle>
+  <section title='Introduction'>
+    <t>There have been some recent proposals to add new message
+      types and codes to <xref target='RFC792'>ICMP</xref> (see,
+      for example, <xref target='templin' />).  Not all
+      of these proposal are consistent with the design and intent
+      of ICMP, and so we attempt to lay out a description of when
+      (and when not) to move functionality into ICMP.</t>
+
+    <t>This document is the result of discussions within the
+      IETF Operations area "ICMP Society," and concerns expressed
+      by the OPS area leadership.</t>
+  </section>
+
+  <section title="ICMP's role in the internet">
+    <t>ICMP was originally intended to be a mechanism for routers
+      to report error conditions back to hosts <xref target='RFC792' />.
+      The word "control" in the protocol name did not describe
+      ICMP's function (i.e. it did not "control" the internet), but
+      rather that it was used to communicate about the control
+      functions in the internet.  For example, even though ICMP
+      included a redirect message type, it was and is not used as a
+      routing protocol.</t>
+
+    <t>Most likely because of the presence of the word
+      "control" in the protocol name, ICMP is often
+      understood to be a control protocol, borrowing some
+      terminology from circuit networks and the PSTN.  That
+      is probably not correct - it might be more correct to
+      describe it as being closer to a management plane
+      protocol, given the data plane/control plane/
+      management plane taxonomy often used in describing
+      telephony protocols.  However, layering in IP networks
+      is not very clean and there's often some intermingling
+      of function that can tend to lead to confusion about
+      where to place new functions.</t>
+
+    <t>This document provides some background on the differences
+      between control and management traffic, and finishes by
+      proposing that any future additional ICMP types or codes
+      be limited to what in telephony networks would be
+      considered management plane traffic.</t>
+
+  </section>
+
+  <section title='Management vs control'>
+    <t>In this section we attempt to draw a distinction
+      between management and control planes, acknowledging
+      in advance that this may serve to muddle the
+      differences even further.  Ultimately the difference
+      may not matter that much for the purpose of creating a
+      policy for adding new types to ICMP, but because that
+      terminology has become ubiquitous, even in IETF
+      discussions, and because it has come up in prior
+      discussions of ICMP policies, it seems worthwhile
+      to take a few paragraph to describe what they are
+      and what they are not.</t>
+
+    <t>The terms "management plane" and "control plane"
+      came into use to describe one aspect of layering in
+      telecommunications networks.  It is particularly
+      important, in the context of this discussion, to understand
+      that "control plane" in telecomm networks almost always
+      refers to 'signaling,' or call control and network
+      control information.  This includes "call"
+      establishment and teardown, route establishment and
+      teardown, requesting QoS or other parameters, and so
+      on.  </t>
+
+    <t>"Management," on the other hand, tends to fall under the
+      rubric "OAM," or "Operations, Administration, and Management."
+      typical functions include fault management and performance
+      monitoring (Service Level Agreement [SLA] compliance),
+      discovery, etc.</t>
+
+  </section> <!-- management vs control -->
+
+  <section title='Where ICMP fits'>
+    <t>The correct answer to the question of where ICMP fits into
+      the management/control/data taxonomy is that it doesn't,
+      at least not neatly.  While some of the message types
+      are unambiguously management message (ICMP type 3, or
+      "unreachable" messages), others are less clearly
+      identifiable.  For example, the "redirect" (ICMP type 5)
+      message can be construed to contain control (in this
+      case, routing) information, even though it is in some
+      very real sense an error message.</t>
+
+    <t>At this time,
+      <list style='symbols'>
+        <t>there are many, many other protocols that can be (and
+          are) used for control traffic, whether they're routing
+          protocols, telephony signaling protocols, QoS protocols,
+          middlebox protocols, AAA protocols, etc.</t>
+        <t>the transport characteristics needed by control traffic
+          can be incompatible with the ICMP protocol standard --
+          for example, they may require reliable delivery, very
+          large payloads, or have security requirements that cannot
+          be met.</t>
+      </list>
+      and because of thiswe propose that any future message
+      types added to ICMP must stay within the "management
+      plane" domain, and in particular that it would not be
+      appropriate or desirable for control (or signaling)
+      messages to be conveyed by ICMP.</t>
+  </section>
+    
+  <section title='Security considerations'>
+    <t>This document attempts to describe a high-level policy
+      for adding ICMP types and codes.  While special attention
+      must be paid to the security implications of any particular
+      new ICMP type or code, specific security considerations
+      are outside the scope of this paper.</t>
+  </section> <!-- security considerations -->
+
+  <section title='IANA considerations'>
+    <t>There are no actions required by IANA.</t>
+  </section>
+
+</middle>
+
+<back>
+  <references title='Informative references'>
+    <reference anchor="RFC792">
+      <front>
+        <title>INTERNET CONTROL MESSAGE PROTOCOL</title>
+        <author initials="J" surname="Postel" fullname="J. Postel">
+          <organization>ISI</organization>
+        </author>
+        <date month="September" year="1981" />
+      </front>
+      <seriesInfo name="RFC" value="792" />
+    </reference>
+   
+<reference anchor='templin'>
+<front>
+<title>Asymmetric Extended Route Optimization (AERO)</title>
+
+<author initials='F' surname='Templin' fullname='Fred Templin'>
+    <organization />
+</author>
+
+<date month='February' day='18' year='2012' />
+
+<abstract><t>Nodes attached to common multi-access link types (e.g., multicast- capable, shared media, non-broadcast multiple access (NBMA), etc.) can exchange packets as neighbors on the link, but may not always be provisioned with sufficient routing information for optimal neighbor selection.  Such nodes should therefore be able to discover a trusted intermediate router on the link that provides both forwarding services to reach off-link destinations and redirection services to inform the node of an on-link neighbor that is closer to the final destination.  This redirection can provide a useful route optimization, since the triangular path from the ingress link neighbor, to the intermediate router, and finally to the egress link neighbor may be considerably longer than the direct path from ingress to egress.  However, ordinary redirection may lead to operational issues on certain link types and/or in certain deployment scenarios. This document therefore introduces an Asymmetric Extended Route Optimization (AERO) capability that addresses the issues.</t></abstract>
+
+</front>
+
+<seriesInfo name='Internet-Draft' value='draft-templin-aero-08' />
+<format type='TXT'
+        target='http://www.ietf.org/internet-drafts/draft-templin-aero-08.txt' />
+</reference>
+
+
+  </references>
+</back>
+</rfc>
