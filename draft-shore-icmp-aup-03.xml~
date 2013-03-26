@@ -4,14 +4,14 @@
 <?rfc symrefs="yes"?>
 <?rfc comments="yes"?>
 <?rfc inline="no"?>
+
 <!DOCTYPE rfc
   SYSTEM "rfc2629.dtd" [
           <!ENTITY rfc2119 PUBLIC '' 
       'http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml'>
 ]>
 
-<rfc ipr='trust200902'
-     docName='draft-shore-icmp-aup-01'>
+<rfc ipr='trust200902' docName='draft-shore-icmp-aup-02' category='bcp'>
 
 <front>
   <title abbrev='ICMP AUP'>
@@ -43,11 +43,11 @@
         <code>27709</code>
         <country>US</country>
       </postal>
-      <email>cpignata@cisc.com</email>
+      <email>cpignata@cisco.com</email>
     </address>
   </author>
 
-  <date month='July' year='2012' />
+  <date month='February' year='2013' />
 
   <area>Operations</area>
 
@@ -64,14 +64,17 @@
 <middle>
   <section title='Introduction'>
     <t>There have been some recent proposals to add new message
-      types and codes to <xref target='RFC792'>ICMP</xref>.  Not all
-      of these proposal are consistent with the design and intent
+      types and codes to ICMP, including  <xref target='RFC792'>ICMPv4</xref>
+      and <xref target='RFC4443'>ICMPv6</xref>.  Not all
+      of these proposals are consistent with the design and intent
       of ICMP, and so we attempt to lay out a description of when
       (and when not) to move functionality into ICMP.</t>
 
-    <t>This document is the result of discussions within the
-      IETF Operations area "ICMP Society," and concerns expressed
-      by the OPS area leadership.</t>
+    <t>This document is the result of discussions among ICMP
+      experts within the OPS area's
+      <eref target='https://svn.tools.ietf.org/area/ops/trac/wiki/TIG_DIAGNOSTICS'>IP
+        Diagnostics Technical Interest Group</eref> and concerns
+      expressed by the OPS area leadership.</t>
   </section>
 
   <section title='Acceptable use policy' anchor='aup'>
@@ -181,6 +184,21 @@
 
       </list></t>
 
+      <section title="A few notes on RPL">
+        <t>RPL, the IPv6 Routing protocol for low-power and
+          lossy networks (see <xref target='RFC6550' />)
+          appears to be
+          something of an outlier among the existing ICMP
+          message types, as the expansion of its acronym appears to be an actual routing
+          protocol using ICMP for transport.</t>
+
+        <t>This should be considered anomalous and is not a
+          model for future ICMP message types.  Our
+          understanding is that the working group initially
+          defined a discovery protocol extending existing
+          ICMPv6 ND messages before moving to its own 
+          native ICMP type.</t>
+      </section>
     </section> <!-- classification of existing message types -->
 
   </section> <!-- acceptable use policy -->
@@ -213,7 +231,7 @@
 
   </section>
 
-  <section title='Management vs control'>
+  <section title='Management vs. control'>
     <t>In this section we attempt to draw a distinction
       between management and control planes, acknowledging
       in advance that this may serve to muddle the
@@ -286,7 +304,9 @@
 
   <section title='Acknowledgments'>
     <t>This document was originally proposed by, and received
-      substantial review and suggestions from, Ron Bonica.</t>
+      substantial review and suggestions from, Ron Bonica.
+      Discussions with Pascal Thubert helped clarify the
+      history of RPL's use of ICMP.</t>
   </section> <!-- acknowledgements -->
 
 </middle>
@@ -303,6 +323,8 @@
       </front>
       <seriesInfo name="RFC" value="792" />
     </reference>
+    <?rfc include='reference.RFC.4443.xml'?>
+    <?rfc include="reference.RFC.6550.xml"?>
   </references>
 </back>
 </rfc>

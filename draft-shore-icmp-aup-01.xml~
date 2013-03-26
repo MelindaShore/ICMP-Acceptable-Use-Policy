@@ -97,7 +97,7 @@
         types according to the taxonomy described in <xref target='aup' />.</t>
 
       <t><list>
-          <t>IPV4 forwarding plane anomaly reporting</t>
+          <t>forwarding plane anomaly reporting</t>
           <t><list style='hanging'>
             <t hangText='3: '>Destination unreachable</t>
             <t hangText='4: '>Source quench (deprecated)</t>
@@ -111,7 +111,7 @@
               mobility protocols, such as Seamoby</t>
           </list></t>
 
-          <t>IPv4 router or host discovery</t>
+          <t>router or host discovery</t>
           <t><list style='hanging'>
             <t hangText='0: '>Echo reply</t>
             <t hangText='8: '>Echo</t>
@@ -134,49 +134,6 @@
             <t hangText='40: '> Photuris</t>
             <t hangText='41: '> ICMP messages utilized by experimental
               mobility protocols, such as Seamoby</t>
-          </list></t>
-
-          <t>IPv6 forwarding plane anomaly reporting</t>
-          <t><list style='hanging'>
-              <t hangText='1: '>Destination unreachable</t>
-              <t hangText='2: '>Packet too big</t>
-              <t hangText='3: '>Time exceeded</t>
-              <t hangText='4: '>Parameter problem</t>
-              <t hangText='137: '>Redirect message</t>
-              <t hangText='150: '>ICMP messages utilized by experimental
-                mobility protocols, such as Seamoby</t>
-          </list></t>
-
-          <t>IPv6 router or host discovery</t>
-          <t><list style='hanging'>
-              <t hangText='128: '>Echo request</t>
-              <t hangText='129: '>Echo reply</t>
-              <t hangText='130: '>Multicast listener query</t>
-              <t hangText='131: '>Multicast listener report</t>
-              <t hangText='132: '>Multicast listener done</t>
-              <t hangText='133: '>Router solicitation</t>
-              <t hangText='134: '>Router advertisement</t>
-              <t hangText='135: '>Neighbor solicitation</t>
-              <t hangText='136: '>Neighbor advertisement</t>
-              <t hangText='138: '>Router renumbering</t>
-              <t hangText='139: '>ICMP node information query</t>
-              <t hangText='140: '>ICMP node information response</t>
-              <t hangText='141: '>Inverse neighbor discovery solicitation message</t>
-              <t hangText='142: '>Inverse neighbor discovery advertisement message</t>
-              <t hangText='143: '>Version 2 multicast listener report</t>
-              <t hangText='144: '>Home agent address discovery request message</t>
-              <t hangText='145: '>Home agent address discovery reply message</t>
-              <t hangText='146: '>Mobile prefix solicitation</t>
-              <t hangText='147: '>Mobile prefix advertisement </t>
-              <t hangText='148: '>Certification path solicitation message</t>
-              <t hangText='149: '>Certification path advertisement message</t>
-              <t hangText='150: '>ICMP messages utilized by experimental
-                mobility protocols, such as Seamoby</t>
-              <t hangText='151: '>Multicast router advertisement</t>
-              <t hangText='152: '>Multicast router solicitation</t>
-              <t hangText='153: '>Multicast router termination</t>
-              <t hangText='154: '>FMIPv6 messages</t>
-              <t hangText='155: '>RPL control message</t>
           </list></t>
 
       </list></t>
