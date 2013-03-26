@@ -52,23 +52,25 @@
   <area>Operations</area>
 
   <abstract>
-    <t>Some recent proposals to add new Internet Control Message
-      Protocol (ICMP) types and/or codes
-      have highlighted a need to describe policies for when adding
-      new features to ICMP is desirable and when it is not.  In
-      this document we provide a basic description of ICMP's
-      role in the IP stack and some guidelines for the future.</t>
+    <t>Concerns about lack of clarity concerning when to add
+      new Internet Control Message Protocol (ICMP) types
+      and/or codes have highlighted a need to describe
+      policies for when adding new features to ICMP is
+      desirable and when it is not.  In this document we
+      provide a basic description of ICMP's role in the IP
+      stack and some guidelines for the future.</t>
   </abstract>
 </front>
 
 <middle>
   <section title='Introduction'>
-    <t>There have been some recent proposals to add new message
-      types and codes to ICMP, including  <xref target='RFC792'>ICMPv4</xref>
-      and <xref target='RFC4443'>ICMPv6</xref>.  Not all
-      of these proposals are consistent with the design and intent
-      of ICMP, and so we attempt to lay out a description of when
-      (and when not) to move functionality into ICMP.</t>
+    <t>There has been some recent concern expressed about a
+      lack of clarity around when to add new message types
+      and codes to ICMP
+      (including <xref target='RFC792'>ICMPv4</xref>
+      and <xref target='RFC4443'>ICMPv6</xref>).  We attempt
+      to lay out a description of when (and when not) to
+      move functionality into ICMP.</t>
 
     <t>This document is the result of discussions among ICMP
       experts within the OPS area's
@@ -91,8 +93,12 @@
           anomaly has been encountered downstream.  The datagram originator
           must be able to determine whether or not the datagram was
           discarded by examining the ICMP message</t>
-        <t>to discover on-link routers and hosts</t>
+        <t>to discover on-link routers and hosts, and
+          network-specific parameters</t>
     </list></t>
+    <t>While we do not want ICMP to be a general-purpose
+      network management protocol it does have a role to
+      play in conveying dynamic information about a network.</t>
 
     <section title='Classification of existing message types'>
 
@@ -266,7 +272,8 @@
     <t>The correct answer to the question of where ICMP fits into
       the management/control/data taxonomy is that it doesn't,
       at least not neatly.  While some of the message types
-      are unambiguously management message (ICMP type 3, or
+      are unambiguously management message, at least within
+      the narrow confines of a management/control dichotomy (ICMP type 3, or
       "unreachable" messages), others are less clearly
       identifiable.  For example, the "redirect" (ICMP type 5)
       message can be construed to contain control (in this
@@ -306,7 +313,9 @@
     <t>This document was originally proposed by, and received
       substantial review and suggestions from, Ron Bonica.
       Discussions with Pascal Thubert helped clarify the
-      history of RPL's use of ICMP.</t>
+      history of RPL's use of ICMP.  We are grateful for
+      feedback from Joe Clarke and Wen Zhang.
+    </t>
   </section> <!-- acknowledgements -->
 
 </middle>
